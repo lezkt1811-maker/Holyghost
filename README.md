@@ -5,7 +5,7 @@ Website for Holy Ghost Plumbing Services — plumbing for the Kansas City metro 
 
 ## What's in it
 - `index.html` — the full one-page site: services, free tools, how it works, service area, booking form, FAQ
-- `styles.css` — neon glow theme matched to the logo (cyan, blue, violet, magenta on black), mobile-friendly
+- `styles.css` — blue and green neon glow theme (blue, cyan, green on black), mobile-friendly
 - `script.js` — glowing particles, emergency checker, drip waste calculator, burst-pipe checklist, service-area checker, booking form
 - `assets/logo.png` — the Holy Ghost Plumbing logo (plus `logo-sm.png`, `favicon.png`, `apple-touch-icon.png`)
 - `404.html`, `robots.txt`, `sitemap.xml` — "page vanished" page and search-engine files
