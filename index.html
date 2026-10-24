@@ -5,11 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Holy Ghost Plumbing Services | Kansas City Plumber</title>
   <meta name="description" content="Holy Ghost Plumbing Services — friendly, reliable plumbing for the Kansas City area. Leaks, drains, water heaters, toilets, sewer lines and more. Call or text 816-879-9346.">
-  <meta name="theme-color" content="#1d3557">
-  <link rel="icon" href="assets/ghost-logo.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#05030f">
+  <link rel="icon" href="assets/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
   <meta property="og:title" content="Holy Ghost Plumbing Services — Kansas City">
   <meta property="og:description" content="Your plumbing problems? They'll vanish. Call or text 816-879-9346.">
-  <meta property="og:image" content="assets/ghost-logo.svg">
+  <meta property="og:image" content="assets/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -21,14 +22,17 @@
     "name": "Holy Ghost Plumbing Services",
     "telephone": "+1-816-879-9346",
     "areaServed": "Kansas City metro area",
-    "image": "assets/ghost-logo.svg"
+    "image": "assets/logo.png"
   }
   </script>
 </head>
 <body>
+  <canvas id="spirits" aria-hidden="true"></canvas>
+  <div class="cursor-glow" aria-hidden="true"></div>
   <a class="skip" href="#main">Skip to content</a>
 
   <div class="topbar">
+    <span class="pulse-dot" aria-hidden="true"></span>
     <span>Plumbing emergency? Call now:</span>
     <a href="tel:+18168799346">816-879-9346</a>
   </div>
@@ -36,7 +40,7 @@
   <header class="site-header">
     <div class="wrap header-inner">
       <a class="brand" href="#top" aria-label="Holy Ghost Plumbing Services home">
-        <img src="assets/ghost-logo.svg" alt="" width="52" height="57">
+        <img src="assets/logo-sm.png" alt="" width="56" height="56">
         <span class="brand-text"><strong>Holy Ghost</strong><small>Plumbing Services</small></span>
       </a>
       <button class="nav-toggle" aria-expanded="false" aria-controls="nav" aria-label="Open menu">
@@ -44,24 +48,25 @@
       </button>
       <nav id="nav" class="nav">
         <a href="#services">Services</a>
-        <a href="#why">Why Us</a>
+        <a href="#tools">Tools</a>
         <a href="#area">Service Area</a>
         <a href="#faq">FAQ</a>
-        <a class="btn btn-primary btn-small" href="#quote">Get a Quote</a>
+        <a class="btn btn-primary btn-small" href="#quote">Book Now</a>
       </nav>
     </div>
   </header>
 
   <main id="main">
+    <!-- HERO -->
     <section class="hero" id="top">
       <div class="wrap hero-inner">
-        <div class="hero-copy">
+        <div class="hero-copy reveal">
           <p class="eyebrow">Kansas City Area Plumbing</p>
-          <h1>Your plumbing problems?<br><span>They'll vanish.</span></h1>
+          <h1>Your plumbing problems?<br><span class="glow-text" id="vanish">They'll vanish.</span></h1>
           <p class="lead">Leaks, clogs, water heaters and everything in between. Holy Ghost Plumbing Services shows up, fixes it right, and leaves your home cleaner than we found it.</p>
           <div class="hero-cta">
             <a class="btn btn-primary" href="tel:+18168799346">📞 Call 816-879-9346</a>
-            <a class="btn btn-ghost" href="#quote">Request a Free Quote</a>
+            <a class="btn btn-ghost" href="#quote">Book a Visit</a>
           </div>
           <ul class="hero-points">
             <li>Upfront pricing before work starts</li>
@@ -69,72 +74,132 @@
             <li>Serving both sides of the state line</li>
           </ul>
         </div>
-        <div class="hero-art">
-          <div class="halo-glow"></div>
-          <img class="mascot" src="assets/ghost-logo.svg" alt="Holy Ghost Plumbing mascot: a friendly ghost with a halo and tool belt" width="340" height="374">
-          <div class="drop d1"></div><div class="drop d2"></div><div class="drop d3"></div>
+
+        <div class="hero-art reveal">
+          <div class="aura"></div>
+          <div class="ring r1"></div><div class="ring r2"></div>
+          <button class="mascot-btn" id="mascot" aria-label="Tap the logo for a plumbing tip">
+            <img class="mascot" src="assets/logo.png" alt="Holy Ghost Plumbing logo: a glowing dove with a halo and water drop, crossed pipe wrenches, and a pipe ring" width="720" height="720">
+          </button>
+          <div class="bubble" id="bubble" role="status" aria-live="polite">Tap the dove for a plumbing tip 🕊️</div>
         </div>
       </div>
     </section>
 
+    <!-- STATS STRIP -->
+    <section class="strip">
+      <div class="wrap strip-inner">
+        <div class="stat reveal"><strong data-count="8">0</strong><span>Core services</span></div>
+        <div class="stat reveal"><strong data-count="24">0</strong><span>KC-area cities</span></div>
+        <div class="stat reveal"><strong data-count="2">0</strong><span>States served</span></div>
+        <div class="stat reveal"><strong>$0</strong><span>Surprise fees</span></div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
     <section class="section" id="services">
       <div class="wrap">
         <p class="eyebrow center">What We Do</p>
         <h2 class="center">Plumbing services</h2>
         <p class="sub center">Tap any service to start a quote for it.</p>
         <div class="grid services-grid">
-          <button class="card service" data-service="Leak Detection & Repair">
-            <span class="icon">💧</span><h3>Leak Detection &amp; Repair</h3>
-            <p>Dripping faucets, hidden pipe leaks, and water spots on the ceiling — found and fixed.</p>
-          </button>
-          <button class="card service" data-service="Drain Cleaning">
-            <span class="icon">🌀</span><h3>Drain Cleaning</h3>
-            <p>Kitchen sinks, showers, tubs and floor drains cleared and flowing again.</p>
-          </button>
-          <button class="card service" data-service="Water Heater">
-            <span class="icon">🔥</span><h3>Water Heaters</h3>
-            <p>Repair, flush and replacement for tank and tankless water heaters.</p>
-          </button>
-          <button class="card service" data-service="Toilet Repair / Install">
-            <span class="icon">🚽</span><h3>Toilets</h3>
-            <p>Running, clogged, rocking or leaking toilets repaired or replaced.</p>
-          </button>
-          <button class="card service" data-service="Sewer Line">
-            <span class="icon">🛠️</span><h3>Sewer &amp; Main Lines</h3>
-            <p>Backups, slow drains throughout the house, and main line clearing.</p>
-          </button>
-          <button class="card service" data-service="Fixture Install">
-            <span class="icon">🚿</span><h3>Fixtures &amp; Faucets</h3>
-            <p>Sinks, faucets, shower valves, disposals and dishwasher hookups.</p>
-          </button>
-          <button class="card service" data-service="Sump Pump">
-            <span class="icon">🌧️</span><h3>Sump Pumps</h3>
-            <p>Keep the basement dry with sump pump repair and installation.</p>
-          </button>
-          <button class="card service" data-service="Frozen / Burst Pipes">
-            <span class="icon">❄️</span><h3>Frozen &amp; Burst Pipes</h3>
-            <p>KC winters are rough on pipes. We thaw, repair and help prevent the next one.</p>
-          </button>
+          <button class="card service reveal" data-service="Leak Detection & Repair"><span class="icon">💧</span><h3>Leak Detection &amp; Repair</h3><p>Dripping faucets, hidden pipe leaks, and water spots on the ceiling — found and fixed.</p></button>
+          <button class="card service reveal" data-service="Drain Cleaning"><span class="icon">🌀</span><h3>Drain Cleaning</h3><p>Kitchen sinks, showers, tubs and floor drains cleared and flowing again.</p></button>
+          <button class="card service reveal" data-service="Water Heater"><span class="icon">🔥</span><h3>Water Heaters</h3><p>Repair, flush and replacement for tank and tankless water heaters.</p></button>
+          <button class="card service reveal" data-service="Toilet Repair / Install"><span class="icon">🚽</span><h3>Toilets</h3><p>Running, clogged, rocking or leaking toilets repaired or replaced.</p></button>
+          <button class="card service reveal" data-service="Sewer Line"><span class="icon">🛠️</span><h3>Sewer &amp; Main Lines</h3><p>Backups, slow drains throughout the house, and main line clearing.</p></button>
+          <button class="card service reveal" data-service="Fixture Install"><span class="icon">🚿</span><h3>Fixtures &amp; Faucets</h3><p>Sinks, faucets, shower valves, disposals and dishwasher hookups.</p></button>
+          <button class="card service reveal" data-service="Sump Pump"><span class="icon">🌧️</span><h3>Sump Pumps</h3><p>Keep the basement dry with sump pump repair and installation.</p></button>
+          <button class="card service reveal" data-service="Frozen / Burst Pipes"><span class="icon">❄️</span><h3>Frozen &amp; Burst Pipes</h3><p>KC winters are rough on pipes. We thaw, repair and help prevent the next one.</p></button>
         </div>
       </div>
     </section>
 
-    <section class="section alt" id="why">
+    <!-- TOOLS -->
+    <section class="section" id="tools">
+      <div class="wrap">
+        <p class="eyebrow center">Free Tools</p>
+        <h2 class="center">Ghostly helpers</h2>
+        <p class="sub center">Figure out what's going on before you even pick up the phone.</p>
+
+        <div class="tools-grid">
+          <!-- Triage -->
+          <div class="card tool reveal" id="triage">
+            <h3>🚨 Is it an emergency?</h3>
+            <p class="tool-sub">Answer a few quick questions.</p>
+            <div class="triage-body" id="triageBody"></div>
+          </div>
+
+          <!-- Drip calculator -->
+          <div class="card tool reveal">
+            <h3>💧 Drip waste calculator</h3>
+            <p class="tool-sub">See how much a leaky faucet is really costing you.</p>
+            <label class="range-label">Drips per minute: <strong id="dripOut">30</strong>
+              <input type="range" id="dripRange" min="1" max="120" value="30">
+            </label>
+            <label class="range-label">Number of leaky fixtures: <strong id="fixOut">1</strong>
+              <input type="range" id="fixRange" min="1" max="6" value="1">
+            </label>
+            <div class="drip-visual" aria-hidden="true"><span class="falling"></span></div>
+            <div class="drip-results">
+              <div><strong id="galDay">0</strong><span>gal / day</span></div>
+              <div><strong id="galYear">0</strong><span>gal / year</span></div>
+              <div><strong id="tubs">0</strong><span>bathtubs / year</span></div>
+            </div>
+            <p class="fine">Based on the USGS estimate of about 15,140 drips per gallon.</p>
+          </div>
+
+          <!-- Shutoff guide -->
+          <div class="card tool reveal">
+            <h3>🔧 Burst pipe? Do this now</h3>
+            <p class="tool-sub">Tap each step as you finish it.</p>
+            <ol class="checklist" id="checklist">
+              <li><button>Shut off the main water valve (basement, near the front wall or water heater)</button></li>
+              <li><button>Turn off the water heater (gas: set to "pilot"; electric: flip the breaker)</button></li>
+              <li><button>Open the lowest faucet to drain the lines</button></li>
+              <li><button>Kill power to any wet area at the breaker — stay out of standing water</button></li>
+              <li><button>Move valuables and towel up what you can</button></li>
+              <li><button>Call Holy Ghost: 816-879-9346</button></li>
+            </ol>
+            <div class="progress"><span id="checkBar"></span></div>
+            <button class="link-btn" id="checkReset" type="button">Reset checklist</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY -->
+    <section class="section" id="why">
       <div class="wrap why-inner">
-        <div>
+        <div class="reveal">
           <p class="eyebrow">Why Holy Ghost</p>
           <h2>Heaven-sent service, down-to-earth prices</h2>
           <p class="sub">We keep it simple: show up on time, explain the problem in plain English, quote the price before we start, and clean up when we're done.</p>
         </div>
         <ul class="why-list">
-          <li><span>⏱️</span><div><strong>On time, every time</strong><p>We give you a real arrival window and stick to it.</p></div></li>
-          <li><span>💵</span><div><strong>Upfront pricing</strong><p>You approve the price before any work begins. No surprises.</p></div></li>
-          <li><span>🧼</span><div><strong>Clean work</strong><p>Shoe covers on, mess cleaned up. Like we were never there.</p></div></li>
-          <li><span>🤝</span><div><strong>Local &amp; personal</strong><p>A Kansas City business that answers its own phone.</p></div></li>
+          <li class="reveal"><span>⏱️</span><div><strong>On time, every time</strong><p>We give you a real arrival window and stick to it.</p></div></li>
+          <li class="reveal"><span>💵</span><div><strong>Upfront pricing</strong><p>You approve the price before any work begins. No surprises.</p></div></li>
+          <li class="reveal"><span>🧼</span><div><strong>Clean work</strong><p>Shoe covers on, mess cleaned up. Like we were never there.</p></div></li>
+          <li class="reveal"><span>🤝</span><div><strong>Local &amp; personal</strong><p>A Kansas City business that answers its own phone.</p></div></li>
         </ul>
       </div>
     </section>
 
+    <!-- PROCESS -->
+    <section class="section" id="process">
+      <div class="wrap">
+        <p class="eyebrow center">How It Works</p>
+        <h2 class="center">Booked in minutes, fixed for good</h2>
+        <ol class="steps">
+          <li class="card reveal"><span class="step-num">1</span><h3>Request</h3><p>Call, text, or send the booking form with your preferred day and time.</p></li>
+          <li class="card reveal"><span class="step-num">2</span><h3>Confirm</h3><p>We reply to confirm your appointment window and ask any questions.</p></li>
+          <li class="card reveal"><span class="step-num">3</span><h3>Diagnose &amp; quote</h3><p>We find the problem and give you the price before any work starts.</p></li>
+          <li class="card reveal"><span class="step-num">4</span><h3>Fixed &amp; gone</h3><p>We fix it, test it, clean up, and vanish — like we were never there.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- AREA -->
     <section class="section" id="area">
       <div class="wrap">
         <p class="eyebrow center">Service Area</p>
@@ -150,16 +215,17 @@
       </div>
     </section>
 
-    <section class="section alt" id="quote">
+    <!-- QUOTE -->
+    <section class="section" id="quote">
       <div class="wrap quote-inner">
-        <div class="quote-copy">
-          <p class="eyebrow">Free Quote</p>
-          <h2>Tell us what's going on</h2>
+        <div class="quote-copy reveal">
+          <p class="eyebrow">Book a Visit</p>
+          <h2>Book your plumber</h2>
           <p class="sub">Fill this out and it opens a ready-to-send text message to us — no account, no waiting on email. Prefer to talk? Just call.</p>
-          <a class="big-phone" href="tel:+18168799346">816-879-9346</a>
+          <a class="big-phone glow-text" href="tel:+18168799346">816-879-9346</a>
           <p class="small">Call or text</p>
         </div>
-        <form class="card quote-form" id="quoteForm" novalidate>
+        <form class="card quote-form reveal" id="quoteForm" novalidate>
           <div class="row">
             <label>Name<input name="name" type="text" required autocomplete="name"></label>
             <label>Phone<input name="phone" type="tel" required autocomplete="tel" placeholder="(816) 555-0123"></label>
@@ -181,6 +247,34 @@
             </label>
             <label>City<input name="city" type="text" required autocomplete="address-level2" placeholder="Kansas City"></label>
           </div>
+          <label>Service address<input name="address" type="text" required autocomplete="street-address" placeholder="123 Main St"></label>
+          <div class="row">
+            <label>Preferred day<input name="date" type="date" id="dateInput"></label>
+            <label>Time window
+              <select name="window">
+                <option>Any time</option>
+                <option>Morning (8–12)</option>
+                <option>Afternoon (12–4)</option>
+                <option>Evening (4–7)</option>
+              </select>
+            </label>
+          </div>
+          <div class="row">
+            <label>Property type
+              <select name="property">
+                <option>House</option>
+                <option>Apartment / Condo</option>
+                <option>Rental I manage</option>
+                <option>Business</option>
+              </select>
+            </label>
+            <label>Best way to reach you
+              <select name="contact">
+                <option>Text me</option>
+                <option>Call me</option>
+              </select>
+            </label>
+          </div>
           <fieldset class="urgency">
             <legend>How urgent?</legend>
             <label><input type="radio" name="urgency" value="Emergency — water is leaking now"> Emergency</label>
@@ -194,19 +288,21 @@
             <button class="btn btn-ghost" type="button" id="copyBtn">Copy Message</button>
           </div>
           <p class="form-note" id="formNote" role="status" aria-live="polite"></p>
+          <p class="fine">📷 Tip: after the text opens, attach a photo of the problem — it helps us bring the right parts. We only use your info to respond to your request.</p>
         </form>
       </div>
     </section>
 
+    <!-- FAQ -->
     <section class="section" id="faq">
       <div class="wrap narrow">
         <p class="eyebrow center">FAQ</p>
         <h2 class="center">Common questions</h2>
-        <details><summary>What should I do if a pipe bursts?</summary><p>Shut off the main water valve right away (usually in the basement near the front wall, or by the water heater), turn off the water heater, then call us at 816-879-9346.</p></details>
-        <details><summary>Do you give quotes before starting?</summary><p>Yes. We look at the problem, explain what's wrong, and give you the price. Work starts only after you say yes.</p></details>
-        <details><summary>Do you work in Kansas and Missouri?</summary><p>Yes — we serve the Kansas City metro on both sides of State Line Road. Use the service area checker above to see your city.</p></details>
-        <details><summary>How do I keep pipes from freezing?</summary><p>Keep the heat at 55°F or higher, open cabinet doors under sinks on outside walls, disconnect garden hoses, and let faucets drip on the coldest nights.</p></details>
-        <details><summary>Why "Holy Ghost"?</summary><p>Because when we're done, your plumbing problems disappear — and so do we, without leaving a mess behind.</p></details>
+        <details class="reveal"><summary>What should I do if a pipe bursts?</summary><p>Shut off the main water valve right away (usually in the basement near the front wall, or by the water heater), turn off the water heater, then call us at 816-879-9346. The checklist in our Tools section walks you through it.</p></details>
+        <details class="reveal"><summary>Do you give quotes before starting?</summary><p>Yes. We look at the problem, explain what's wrong, and give you the price. Work starts only after you say yes.</p></details>
+        <details class="reveal"><summary>Do you work in Kansas and Missouri?</summary><p>Yes — we serve the Kansas City metro on both sides of State Line Road. Use the service area checker above to see your city.</p></details>
+        <details class="reveal"><summary>How do I keep pipes from freezing?</summary><p>Keep the heat at 55°F or higher, open cabinet doors under sinks on outside walls, disconnect garden hoses, and let faucets drip on the coldest nights.</p></details>
+        <details class="reveal"><summary>Why "Holy Ghost"?</summary><p>Because when we're done, your plumbing problems disappear — and so do we, without leaving a mess behind.</p></details>
       </div>
     </section>
   </main>
@@ -214,7 +310,7 @@
   <footer class="site-footer">
     <div class="wrap footer-inner">
       <div class="brand footer-brand">
-        <img src="assets/ghost-logo.svg" alt="" width="44" height="48">
+        <img src="assets/logo-sm.png" alt="" width="64" height="64">
         <span class="brand-text"><strong>Holy Ghost</strong><small>Plumbing Services</small></span>
       </div>
       <div>

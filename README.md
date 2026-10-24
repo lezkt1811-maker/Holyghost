@@ -4,14 +4,16 @@ Website for Holy Ghost Plumbing Services — plumbing for the Kansas City metro 
 📞 **816-879-9346**
 
 ## What's in it
-- `index.html` — the full one-page site (services, why us, service area, quote form, FAQ)
-- `styles.css` — styling, mobile-friendly
-- `script.js` — mobile menu, service-area checker, quote form
-- `assets/ghost-logo.svg` — the ghost mascot with halo and tool belt (also the favicon)
+- `index.html` — the full one-page site: services, free tools, how it works, service area, booking form, FAQ
+- `styles.css` — neon glow theme matched to the logo (cyan, blue, violet, magenta on black), mobile-friendly
+- `script.js` — glowing particles, emergency checker, drip waste calculator, burst-pipe checklist, service-area checker, booking form
+- `assets/logo.png` — the Holy Ghost Plumbing logo (plus `logo-sm.png`, `favicon.png`, `apple-touch-icon.png`)
+- `404.html`, `robots.txt`, `sitemap.xml` — "page vanished" page and search-engine files
 
-## How the quote form works
+## How the booking form works
 No server needed. The form checks the fields, then opens the visitor's texting app with a
-pre-written message to 816-879-9346. A "Copy Message" button is there as a backup.
+pre-written message to 816-879-9346 with their name, address, service, urgency,
+preferred day and time window. A "Copy Message" button is there as a backup.
 
 ## Going live (GitHub Pages)
 Settings → Pages → Source: **Deploy from a branch** → Branch: `main` / `(root)` → Save.
