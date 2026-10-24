@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Holy Ghost Plumbing Services | Kansas City Plumber</title>
-  <meta name="description" content="Holy Ghost Plumbing Services — friendly, reliable plumbing for the Kansas City area. Leaks, drains, water heaters, toilets, sewer lines and more. Call or text 816-879-9346.">
+  <title>Holy Ghost Plumbing Services | Gladstone &amp; Northland KC Plumber</title>
+  <meta name="description" content="Holy Ghost Plumbing Services — friendly, reliable plumbing within 10 miles of Gladstone, MO, including the Northland, North Kansas City, Liberty, Parkville and Riverside. Leaks, drains, water heaters, toilets, sewer lines and more. Call or text 816-879-9346.">
   <meta name="theme-color" content="#020a10">
   <link rel="icon" href="assets/favicon.png" type="image/png">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
@@ -21,7 +21,8 @@
     "@type": "Plumber",
     "name": "Holy Ghost Plumbing Services",
     "telephone": "+1-816-879-9346",
-    "areaServed": "Kansas City metro area",
+    "areaServed": { "@type": "GeoCircle", "geoMidpoint": { "@type": "GeoCoordinates", "latitude": 39.2039, "longitude": -94.5547 }, "geoRadius": "16093" },
+    "address": { "@type": "PostalAddress", "addressLocality": "Gladstone", "addressRegion": "MO", "addressCountry": "US" },
     "image": "assets/logo.png"
   }
   </script>
@@ -61,7 +62,7 @@
     <section class="hero" id="top">
       <div class="wrap hero-inner">
         <div class="hero-copy reveal">
-          <p class="eyebrow">Kansas City Area Plumbing</p>
+          <p class="eyebrow">Gladstone &amp; Northland KC Plumbing</p>
           <h1>Your plumbing problems?<br><span class="glow-text" id="vanish">They'll vanish.</span></h1>
           <p class="lead">Leaks, clogs, water heaters and everything in between. Holy Ghost Plumbing Services shows up, fixes it right, and leaves your home cleaner than we found it.</p>
           <div class="hero-cta">
@@ -71,7 +72,7 @@
           <ul class="hero-points">
             <li>Upfront pricing before work starts</li>
             <li>Residential &amp; light commercial</li>
-            <li>Serving both sides of the state line</li>
+            <li>Serving everyone within 10 miles of Gladstone</li>
           </ul>
         </div>
 
@@ -90,8 +91,8 @@
     <section class="strip">
       <div class="wrap strip-inner">
         <div class="stat reveal"><strong data-count="8">0</strong><span>Core services</span></div>
-        <div class="stat reveal"><strong data-count="24">0</strong><span>KC-area cities</span></div>
-        <div class="stat reveal"><strong data-count="2">0</strong><span>States served</span></div>
+        <div class="stat reveal"><strong data-count="21">0</strong><span>Communities served</span></div>
+        <div class="stat reveal"><strong data-count="10">0</strong><span>Mile service radius</span></div>
         <div class="stat reveal"><strong>$0</strong><span>Surprise fees</span></div>
       </div>
     </section>
@@ -180,7 +181,7 @@
           <li class="reveal"><span>⏱️</span><div><strong>On time, every time</strong><p>We give you a real arrival window and stick to it.</p></div></li>
           <li class="reveal"><span>💵</span><div><strong>Upfront pricing</strong><p>You approve the price before any work begins. No surprises.</p></div></li>
           <li class="reveal"><span>🧼</span><div><strong>Clean work</strong><p>Shoe covers on, mess cleaned up. Like we were never there.</p></div></li>
-          <li class="reveal"><span>🤝</span><div><strong>Local &amp; personal</strong><p>A Kansas City business that answers its own phone.</p></div></li>
+          <li class="reveal"><span>🤝</span><div><strong>Local &amp; personal</strong><p>A Gladstone-area business that answers its own phone.</p></div></li>
         </ul>
       </div>
     </section>
@@ -203,13 +204,14 @@
     <section class="section" id="area">
       <div class="wrap">
         <p class="eyebrow center">Service Area</p>
-        <h2 class="center">Serving the Kansas City metro</h2>
-        <p class="sub center">Missouri and Kansas. Type your city to check if we cover it.</p>
+        <h2 class="center">Within 10 miles of Gladstone</h2>
+        <p class="sub center">Home base is Gladstone, MO. Type your city, or tap "Use my location" to check your exact distance.</p>
         <form class="area-check" id="areaForm" autocomplete="off">
           <label for="areaInput" class="sr">Your city</label>
-          <input id="areaInput" type="text" placeholder="e.g. Overland Park" required>
+          <input id="areaInput" type="text" placeholder="e.g. Liberty" required>
           <button class="btn btn-primary" type="submit">Check</button>
         </form>
+        <p class="center"><button class="btn btn-ghost btn-small" type="button" id="locBtn">📍 Use my location</button></p>
         <p class="area-result" id="areaResult" role="status" aria-live="polite"></p>
         <ul class="chips" id="areaList"></ul>
       </div>
@@ -245,7 +247,7 @@
                 <option>Something else</option>
               </select>
             </label>
-            <label>City<input name="city" type="text" required autocomplete="address-level2" placeholder="Kansas City"></label>
+            <label>City<input name="city" type="text" required autocomplete="address-level2" placeholder="Gladstone"></label>
           </div>
           <label>Service address<input name="address" type="text" required autocomplete="street-address" placeholder="123 Main St"></label>
           <div class="row">
@@ -300,7 +302,7 @@
         <h2 class="center">Common questions</h2>
         <details class="reveal"><summary>What should I do if a pipe bursts?</summary><p>Shut off the main water valve right away (usually in the basement near the front wall, or by the water heater), turn off the water heater, then call us at 816-879-9346. The checklist in our Tools section walks you through it.</p></details>
         <details class="reveal"><summary>Do you give quotes before starting?</summary><p>Yes. We look at the problem, explain what's wrong, and give you the price. Work starts only after you say yes.</p></details>
-        <details class="reveal"><summary>Do you work in Kansas and Missouri?</summary><p>Yes — we serve the Kansas City metro on both sides of State Line Road. Use the service area checker above to see your city.</p></details>
+        <details class="reveal"><summary>How far do you travel?</summary><p>We cover everywhere within about 10 miles of Gladstone, MO — the Northland, North Kansas City, Liberty, Parkville, Riverside, downtown KC and nearby. Tap "Use my location" in the Service Area section to check your exact distance. Just outside the line? Call 816-879-9346 and ask.</p></details>
         <details class="reveal"><summary>How do I keep pipes from freezing?</summary><p>Keep the heat at 55°F or higher, open cabinet doors under sinks on outside walls, disconnect garden hoses, and let faucets drip on the coldest nights.</p></details>
         <details class="reveal"><summary>Why "Holy Ghost"?</summary><p>Because when we're done, your plumbing problems disappear — and so do we, without leaving a mess behind.</p></details>
       </div>
@@ -315,7 +317,7 @@
       </div>
       <div>
         <p><a href="tel:+18168799346">📞 816-879-9346</a></p>
-        <p>Serving the Kansas City metro area</p>
+        <p>Serving 10 miles around Gladstone, MO</p>
       </div>
       <p class="copy">© <span id="year"></span> Holy Ghost Plumbing Services</p>
     </div>

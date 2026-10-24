@@ -217,6 +217,7 @@ input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border: 0; bord
 .area-result.no { color: #ffc38a; }
 .chips { list-style: none; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: .5rem; margin-top: 1rem; }
 .chips li { background: var(--panel); border: 1px solid var(--line); color: var(--text); padding: .35em .95em; border-radius: 999px; font-size: .88rem; transition: .25s; }
+.chips li small { opacity: .7; margin-left: .35em; font-size: .78em; }
 .chips li.hit { background: var(--grad); color: #021018; box-shadow: var(--glow-lg); }
 
 /* Forms */

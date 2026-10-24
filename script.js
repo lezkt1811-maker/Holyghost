@@ -194,34 +194,110 @@
   });
   updateBar();
 
-  /* ---------- Service area checker ---------- */
+  /* ---------- Service area checker: 10-mile radius around Gladstone, MO ---------- */
+  const HOME = { lat: 39.2039, lon: -94.5547 }; // Gladstone, MO
+  const RADIUS_MI = 10;
+  // [display name, approx. miles from Gladstone, extra search names]
   const AREAS = [
-    "Kansas City, MO", "Kansas City, KS", "North Kansas City", "Overland Park", "Olathe",
-    "Lenexa", "Shawnee", "Merriam", "Mission", "Prairie Village", "Leawood", "Lee's Summit",
-    "Independence", "Blue Springs", "Raytown", "Grandview", "Belton", "Raymore",
-    "Gladstone", "Liberty", "Parkville", "Riverside", "Grain Valley", "Bonner Springs",
+    ["Gladstone", 0, []],
+    ["Oakview", 1.5, ["oaks", "oakwood", "oakwoodpark"]],
+    ["Kansas City Northland", 2.8, ["northland", "kcnorth", "northkc", "kansascitynorth"]],
+    ["Northmoor", 2.9, []],
+    ["Claycomo", 3.3, []],
+    ["Avondale", 3.4, []],
+    ["Riverside", 3.6, []],
+    ["Pleasant Valley", 3.9, []],
+    ["Houston Lake", 4.4, []],
+    ["Randolph", 4.4, []],
+    ["Lake Waukomis", 4.5, []],
+    ["North Kansas City", 5.1, ["nkc", "northkansascity"]],
+    ["Birmingham", 5.6, []],
+    ["Platte Woods", 6.2, []],
+    ["Parkville", 6.9, []],
+    ["Downtown Kansas City, MO", 7.3, ["kansascity", "kansascitymo", "kcmo", "downtownkc", "downtown"]],
+    ["Kansas City, KS (east side)", 7.3, ["kansascityks", "kck", "kckansas"]],
+    ["Liberty", 7.8, []],
+    ["Weatherby Lake", 7.9, []],
+    ["Sugar Creek", 8.8, []],
+    ["Ferrelview", 9.9, []],
   ];
-  const norm = (s) => s.toLowerCase().replace(/[^a-z]/g, "").replace(/(mo|ks)$/, "");
+  // Close by but outside the 10-mile line — ask them to call
+  const NEARBY = [
+    ["Westport / Midtown KC", 10.6, ["westport", "midtown", "midtownkc"]],
+    ["Independence", 10.8, []],
+    ["Smithville", 12.7, []],
+    ["Raytown", 14.4, []],
+    ["Kearney", 15.3, []],
+    ["Platte City", 16.7, []],
+  ];
+  const norm = (s) => s.toLowerCase().replace(/\(.*?\)/g, "").replace(/[^a-z]/g, "");
+  const keys = (row) => [norm(row[0]), ...row[2]];
+  const exact = (row, q) => keys(row).includes(q);
+  const partial = (row, q) => q.length >= 4 && keys(row).some((k) => k.startsWith(q));
+  const findIn = (rows, q) => rows.find((r) => exact(r, q)) || rows.find((r) => partial(r, q));
+  // Farther KC-metro cities, so visitors get a clear answer
+  const OUTSIDE = ["Overland Park", "Olathe", "Lenexa", "Shawnee", "Merriam", "Mission", "Prairie Village",
+    "Leawood", "Lee's Summit", "Blue Springs", "Grandview", "Belton", "Raymore", "Grain Valley",
+    "Bonner Springs", "Lansing", "Leavenworth", "Excelsior Springs", "Peculiar", "Lawrence"];
+
   const list = $("#areaList");
-  AREAS.forEach((a) => { const li = document.createElement("li"); li.textContent = a; list.appendChild(li); });
+  AREAS.forEach(([name, mi]) => {
+    const li = document.createElement("li");
+    li.innerHTML = `${name} <small>${mi ? mi + " mi" : "home base"}</small>`;
+    li.dataset.name = name;
+    list.appendChild(li);
+  });
   const result = $("#areaResult");
+  const setResult = (cls, text) => { result.className = "area-result " + cls; result.textContent = text; };
+
   $("#areaForm").addEventListener("submit", (e) => {
     e.preventDefault();
     const q = norm($("#areaInput").value);
     $$("li", list).forEach((li) => li.classList.remove("hit"));
     if (!q) return;
-    let found = null;
-    $$("li", list).forEach((li) => {
-      const n = norm(li.textContent);
-      if (n === q || (q.length >= 4 && n.startsWith(q))) { li.classList.add("hit"); found = found || li.textContent; }
-    });
-    if (found) {
-      result.className = "area-result yes";
-      result.textContent = `Yes! We serve ${found}. Call or text ${PHONE_PRETTY}.`;
-    } else {
-      result.className = "area-result no";
-      result.textContent = `Not on our list yet — call ${PHONE_PRETTY} and we'll let you know if we can make the trip.`;
+    const hit = findIn(AREAS, q);
+    if (hit) {
+      $(`li[data-name="${hit[0]}"]`, list).classList.add("hit");
+      setResult("yes", `Yes! ${hit[0]} is ${hit[1] ? "about " + hit[1] + " miles" : "our home base"} — inside our 10-mile area. Call or text ${PHONE_PRETTY}.`);
+      return;
     }
+    const near = findIn(NEARBY, q);
+    if (near) {
+      setResult("no", `${near[0]} is about ${near[1]} miles out — just past our 10-mile area. Call ${PHONE_PRETTY} and ask; we may still be able to help.`);
+      return;
+    }
+    const far = OUTSIDE.find((n) => norm(n) === q || (q.length >= 4 && norm(n).startsWith(q)));
+    if (far) {
+      setResult("no", `${far} is outside our 10-mile area around Gladstone. Sorry about that!`);
+      return;
+    }
+    setResult("no", `We couldn't find that city. Try "Use my location", or call ${PHONE_PRETTY} and we'll tell you if we cover it.`);
+  });
+
+  // Real distance check with the visitor's location (never stored or sent anywhere)
+  function milesBetween(a, b) {
+    const R = 3958.8, toRad = (d) => (d * Math.PI) / 180;
+    const dLat = toRad(b.lat - a.lat), dLon = toRad(b.lon - a.lon);
+    const h = Math.sin(dLat / 2) ** 2 + Math.cos(toRad(a.lat)) * Math.cos(toRad(b.lat)) * Math.sin(dLon / 2) ** 2;
+    return 2 * R * Math.asin(Math.sqrt(h));
+  }
+  const locBtn = $("#locBtn");
+  locBtn.addEventListener("click", () => {
+    if (!("geolocation" in navigator)) return setResult("no", `Your browser can't share location. Type your city instead, or call ${PHONE_PRETTY}.`);
+    locBtn.disabled = true;
+    setResult("", "Finding you…");
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        locBtn.disabled = false;
+        const mi = milesBetween(HOME, { lat: pos.coords.latitude, lon: pos.coords.longitude });
+        const rounded = mi < 1 ? "less than 1" : mi.toFixed(1);
+        if (mi <= RADIUS_MI) setResult("yes", `You're ${rounded} miles from Gladstone — you're in our service area! Call or text ${PHONE_PRETTY}.`);
+        else if (mi <= RADIUS_MI + 5) setResult("no", `You're ${rounded} miles from Gladstone — just past our 10-mile area. Call ${PHONE_PRETTY} and ask; we may still make the trip.`);
+        else setResult("no", `You're ${rounded} miles from Gladstone, outside our 10-mile service area. Sorry about that!`);
+      },
+      () => { locBtn.disabled = false; setResult("no", `Couldn't get your location. Type your city instead, or call ${PHONE_PRETTY}.`); },
+      { enableHighAccuracy: false, timeout: 10000, maximumAge: 600000 }
+    );
   });
 
   /* ---------- Booking form -> pre-filled text message ---------- */

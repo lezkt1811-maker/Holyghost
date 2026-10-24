@@ -1,6 +1,6 @@
 # Holy Ghost Plumbing Services
 
-Website for Holy Ghost Plumbing Services — plumbing for the Kansas City metro area.
+Website for Holy Ghost Plumbing Services — plumbing within 10 miles of Gladstone, MO (Northland Kansas City).
 📞 **816-879-9346**
 
 ## What's in it
@@ -21,4 +21,4 @@ The site will be at `https://lezkt1811-maker.github.io/holyghost/`.
 
 ## Editing
 - Phone number: search `8168799346` / `816-879-9346` in `index.html` and `script.js`
-- Cities served: the `AREAS` list at the top of `script.js`
+- Service area: `HOME`, `RADIUS_MI`, and the `AREAS` / `NEARBY` lists in the service area section of `script.js`
